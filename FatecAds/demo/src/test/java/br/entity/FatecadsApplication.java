@@ -1,4 +1,4 @@
-package br.com.fatecads.fatecads;
+package br.entity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,7 @@ public class FatecadsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FatecadsApplication.class, args);
 	}
+
+	
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>CPF</th>
+                <th>RA</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="aluno : ${alunos}">
+                <td th:text="${aluno.idAluno}">1</td>
+                <td th:text="${aluno.nomeAluno}">Nome</td>
+                <td th:text="${aluno.emailAluno}">email@dominio.com</td>
+                <td th:text="${aluno.telefoneAluno}">11999999999</td>
+                <td th:text="${aluno.cpfAluno}">123.456.789-00</td>
+                <td th:text="${aluno.raAluno}">RA</td>
+                <td>
+                    <a href="/alunos/editar/${aluno.idAluno}">Editar</a>
+                    <a href="/alunos/excluir/${aluno.idAluno}" onclick="return confirm('Tem certeza que deseja excluir este aluno?')">Excluir</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(alunos)}">
+                <td colspan="5">Nenhum aluno cadastrado.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><a href="/">Voltar para inicio</a></p>
+</body>
+</html>

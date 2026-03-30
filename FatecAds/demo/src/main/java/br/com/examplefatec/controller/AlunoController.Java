@@ -28,6 +28,14 @@ public class AlunoController {
         return "alunos/listaAlunos";
     }
 
+    //metodo para guiar um novo aluno e abrir formulario
+    @GetMapping("/criar")
+    public String criar(Model model) {
+        model.addAttribute("aluno", new Aluno());
+        return "alunos/formularioAluno";
+    }
+
+
 
 }
 

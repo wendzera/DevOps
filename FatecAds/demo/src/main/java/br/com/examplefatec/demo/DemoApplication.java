@@ -1,4 +1,4 @@
-package br.com.examplefatec.demo;
+package br.com.examplefatec;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

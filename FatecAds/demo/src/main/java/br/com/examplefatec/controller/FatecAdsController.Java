@@ -1,16 +1,14 @@
 package br.com.examplefatec.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequestMapping("/fatecads")
 public class FatecAdsController {
 
-    public String index (Model model) {
+    @GetMapping({"/", "/fatecads"})
+    public String index(Model model) {
         return "index";
     }
-    
 }

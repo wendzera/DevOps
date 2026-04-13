@@ -1,4 +1,4 @@
-package br.repository;
+package br.com.examplefatec.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

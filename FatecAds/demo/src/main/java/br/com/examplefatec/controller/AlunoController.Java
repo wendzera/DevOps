@@ -1,41 +1,38 @@
-package br.com.fatecads.fatecads.controller;
+package br.com.examplefatec.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.requestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.examplefatec.entity.AlunoService;
+import br.com.examplefatec.entity.Aluno;
+import br.com.examplefatec.service.AlunoService;
 
-@controller
-@requestMapping("/alunos")
+@Controller
+@RequestMapping("/alunos")
 public class AlunoController {
+
     @Autowired
     private AlunoService alunoService;
 
- 
- 
-    // metodo para salvar aluno.
-    @postMapping("/salvar")
+    @PostMapping("/salvar")
     public String salvar(@ModelAttribute Aluno aluno) {
         alunoService.save(aluno);
         return "redirect:/alunos/listar";
     }
 
-    //metodo para listar todos os alunos.
-    @getmapping("/listar")
+    @GetMapping("/listar")
     public String listar(Model model) {
         model.addAttribute("alunos", alunoService.findAll());
-        return "alunos/listaAlunos";
+        return "aluno/listarAlunos";
     }
 
-    //metodo para guiar um novo aluno e abrir formulario
     @GetMapping("/criar")
     public String criar(Model model) {
         model.addAttribute("aluno", new Aluno());
-        return "alunos/formularioAluno";
+        return "aluno/formularioAluno";
     }
-
-
-
 }
-

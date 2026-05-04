@@ -8,38 +8,31 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.examplefatec.entity.Aluno;
-import br.com.examplefatec.service.AlunoService;
+import br.com.examplefatec.entity.Curso;
 import br.com.examplefatec.service.CursoService;
 
 @Controller
-@RequestMapping("/alunos")
-public class AlunoController {
-
-    @Autowired
-    private AlunoService alunoService;
+@RequestMapping("/cursos")
+public class CursoController {
 
     @Autowired
     private CursoService cursoService;
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Aluno aluno) {
-        alunoService.save(aluno);
-        return "redirect:/alunos/listar";
+    public String salvar(@ModelAttribute Curso curso) {
+        cursoService.save(curso);
+        return "redirect:/cursos/listar";
     }
 
     @GetMapping("/listar")
     public String listar(Model model) {
-        model.addAttribute("alunos", alunoService.findAll());
-        return "aluno/listarAlunos";
+        model.addAttribute("cursos", cursoService.findAll());
+        return "curso/listarCursos";
     }
 
     @GetMapping("/criar")
     public String criar(Model model) {
-        model.addAttribute("aluno", new Aluno());
-        model.addAttribute("cursos", cursoService.findAll());
-        return "aluno/formularioAluno";
+        model.addAttribute("curso", new Curso());
+        return "curso/formularioCurso";
     }
-
-    
 }

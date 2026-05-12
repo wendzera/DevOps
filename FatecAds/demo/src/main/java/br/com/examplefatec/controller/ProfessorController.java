@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,5 +35,17 @@ public class ProfessorController {
     public String criar(Model model) {
         model.addAttribute("professor", new Professor());
         return "professor/formularioProfessor";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Integer id, Model model) {
+        model.addAttribute("professor", professorService.findById(id));
+        return "professor/formularioProfessor";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable Integer id) {
+        professorService.deleteById(id);
+        return "redirect:/professores/listar";
     }
 }

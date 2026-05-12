@@ -21,4 +21,13 @@ public class CursoService {
     public List<Curso> findAll() {
         return cursoRepository.findAll();
     }
+
+    public Curso findById(Integer id) {
+        return cursoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Curso nao encontrado: " + id));
+    }
+
+    public void deleteById(Integer id) {
+        cursoRepository.deleteById(id);
+    }
 }

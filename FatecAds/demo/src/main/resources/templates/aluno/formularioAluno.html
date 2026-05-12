@@ -60,6 +60,7 @@
                 </div>
                 <div class="card-body p-4">
                     <form action="#" th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+                        <input type="hidden" th:field="*{idAluno}">
 
                         <div class="mb-3">
                             <label for="nomeAluno" class="form-label fw-semibold">
@@ -109,6 +110,20 @@
                             </label>
                             <input type="text" class="form-control" id="raAluno"
                                    th:field="*{raAluno}" placeholder="Digite o RA do aluno" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="curso" class="form-label fw-semibold">
+                                <i class="bi bi-journal-bookmark me-1 text-primary"></i>Curso
+                            </label>
+                            <select class="form-select" id="curso" th:field="*{curso.idCurso}">
+                                <option value="0">Selecione um curso</option>
+                                <option th:each="curso : ${cursos}"
+                                        th:value="${curso.idCurso}"
+                                        th:text="${curso.nomeCurso}">
+                                    Curso
+                                </option>
+                            </select>
                         </div>
 
                         <div class="d-flex gap-2">

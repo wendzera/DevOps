@@ -21,4 +21,13 @@ public class DisciplinaService {
     public List<Disciplina> findAll() {
         return disciplinaRepository.findAll();
     }
+
+    public Disciplina findById(Integer id) {
+        return disciplinaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Disciplina nao encontrada: " + id));
+    }
+
+    public void deleteById(Integer id) {
+        disciplinaRepository.deleteById(id);
+    }
 }

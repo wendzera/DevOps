@@ -21,4 +21,13 @@ public class AlunoService {
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
     }
+
+    public Aluno findById(Integer id) {
+        return alunoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Aluno nao encontrado: " + id));
+    }
+
+    public void deleteById(Integer id) {
+        alunoRepository.deleteById(id);
+    }
 }

@@ -21,4 +21,13 @@ public class ProfessorService {
     public List<Professor> findAll() {
         return professorRepository.findAll();
     }
+
+    public Professor findById(Integer id) {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Professor nao encontrado: " + id));
+    }
+
+    public void deleteById(Integer id) {
+        professorRepository.deleteById(id);
+    }
 }

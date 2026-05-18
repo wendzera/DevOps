@@ -36,6 +36,7 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="alert alert-danger" th:if="${erro}" th:text="${erro}">Erro</div>
+                    <div class="alert alert-success" th:if="${mensagem}" th:text="${mensagem}">Mensagem</div>
 
                     <form action="#" th:action="@{/login}" method="post">
                         <div class="mb-3">

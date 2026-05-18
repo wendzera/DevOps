@@ -21,7 +21,15 @@ public class LoginController {
     private UsuarioService usuarioService;
 
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(required = false) String error,
+            @RequestParam(required = false) String logout,
+            Model model) {
+        if (error != null) {
+            model.addAttribute("erro", "E-mail ou senha invalidos.");
+        }
+        if (logout != null) {
+            model.addAttribute("mensagem", "Logout realizado com sucesso.");
+        }
         return "usuario/login";
     }
 

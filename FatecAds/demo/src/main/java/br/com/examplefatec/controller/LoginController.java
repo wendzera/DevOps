@@ -55,6 +55,57 @@ public class LoginController {
         return "redirect:/login";
     }
 
+    @GetMapping("/recuperar-senha")
+    public String recuperarSenha() {
+        return "usuario/recuperarSenha";
+    }
+
+    @PostMapping("/recuperar-senha")
+    public String solicitarRecuperacaoSenha(@RequestParam String emailUsuario,
+            RedirectAttributes redirectAttributes) {
+        try {
+            usuarioService.solicitarRecuperacaoSenha(emailUsuario);
+            redirectAttributes.addFlashAttribute("mensagem",
+                    "Se o e-mail estiver cadastrado, voce recebera um token para redefinir a senha.");
+        } catch (Exception exception) {
+            redirectAttributes.addFlashAttribute("erro",
+                    "Nao foi possivel enviar o e-mail de recuperacao. Verifique a configuracao SMTP.");
+        }
+        return "redirect:/recuperar-senha";
+    }
+
+    @GetMapping("/redefinir-senha")
+    public String redefinirSenha(@RequestParam(required = false) String token, Model model) {
+        model.addAttribute("token", token);
+        if (token != null && !token.isBlank() && !usuarioService.tokenRecuperacaoValido(token)) {
+            model.addAttribute("erro", "Token invalido ou expirado.");
+        }
+        return "usuario/redefinirSenha";
+    }
+
+    @PostMapping("/redefinir-senha")
+    public String salvarNovaSenha(@RequestParam String token,
+            @RequestParam String novaSenha,
+            @RequestParam String confirmarSenha,
+            RedirectAttributes redirectAttributes) {
+        if (!novaSenha.equals(confirmarSenha)) {
+            redirectAttributes.addFlashAttribute("erro", "As senhas nao conferem.");
+            redirectAttributes.addAttribute("token", token);
+            return "redirect:/redefinir-senha";
+        }
+
+        try {
+            usuarioService.redefinirSenha(token, novaSenha);
+            redirectAttributes.addFlashAttribute("mensagem",
+                    "Senha redefinida com sucesso. Faca login com a nova senha.");
+            return "redirect:/login";
+        } catch (IllegalArgumentException exception) {
+            redirectAttributes.addFlashAttribute("erro", exception.getMessage());
+            redirectAttributes.addAttribute("token", token);
+            return "redirect:/redefinir-senha";
+        }
+    }
+
     @GetMapping("/usuarios/listar")
     public String listarUsuarios(Model model) {
         model.addAttribute("usuarios", usuarioService.findAll());

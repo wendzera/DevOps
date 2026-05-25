@@ -49,15 +49,18 @@
                             <label for="senhaUsuario" class="form-label fw-semibold">Senha</label>
                             <input type="password" class="form-control" id="senhaUsuario"
                                    name="senhaUsuario" placeholder="Digite sua senha" required>
+                            <div class="text-end mt-2">
+                                <a th:href="@{/recuperar-senha}" class="small text-decoration-none">
+                                    Esqueci minha senha
+                                </a>
+                            </div>
                         </div>
 
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-primary flex-fill">
-                                <i class="bi bi-check-circle me-1"></i>Entrar
-                            </button>
+                                <i class="bi bi-check-circle me-1"></i>Entrar</button>
                             <a href="/usuarios/criar" class="btn btn-outline-secondary flex-fill">
-                                <i class="bi bi-person-plus me-1"></i>Cadastrar
-                            </a>
+                                <i class="bi bi-person-plus me-1"></i>Cadastrar</a>
                         </div>
                     </form>
                 </div>

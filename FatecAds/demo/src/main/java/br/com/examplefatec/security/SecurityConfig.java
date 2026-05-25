@@ -26,6 +26,8 @@ public class SecurityConfig {
                                                                 "/",
                                                                 "/error",
                                                                 "/login",
+                                                                "/recuperar-senha",
+                                                                "/redefinir-senha",
                                                                 "/h2-console/**",
                                                                 "/css/**",
                                                                 "/images/**",

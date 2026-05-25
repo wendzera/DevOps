@@ -9,4 +9,6 @@ import br.com.examplefatec.entity.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findByEmailUsuario(String emailUsuario);
+
+    Optional<Usuario> findByTokenRecuperacaoSenha(String tokenRecuperacaoSenha);
 }

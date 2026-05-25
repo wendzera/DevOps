@@ -1,5 +1,7 @@
 package br.com.examplefatec.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,4 +31,9 @@ public class Usuario {
 
     @Column(nullable = false, length = 100)
     private String senhaUsuario;
+
+    @Column(length = 20)
+    private String tokenRecuperacaoSenha;
+
+    private LocalDateTime tokenRecuperacaoExpiracao;
 }

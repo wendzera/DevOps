@@ -29,8 +29,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house me-1"></i>In&iacute;cio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/usuarios/listar"><i class="bi bi-person-gear me-1"></i>Usu&aacute;rios</a></li>
+                <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house me-1"></i>Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/usuarios/listar"><i class="bi bi-person-gear me-1"></i>Usuarios</a></li>
                 <li class="nav-item"><a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a></li>
             </ul>
         </div>
@@ -42,15 +42,15 @@
         <div class="col-lg-7 col-md-9">
             <nav aria-label="breadcrumb" class="mb-3">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">In&iacute;cio</a></li>
-                    <li class="breadcrumb-item"><a href="/usuarios/listar">Usu&aacute;rios</a></li>
+                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="/usuarios/listar">Usuarios</a></li>
                     <li class="breadcrumb-item active">Cadastro</li>
                 </ol>
             </nav>
 
             <div class="card form-card">
                 <div class="card-header">
-                    <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Cadastro de Usu&aacute;rio</h4>
+                    <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Cadastro de Usuario</h4>
                 </div>
                 <div class="card-body p-4">
                     <form action="#" th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
@@ -70,6 +70,7 @@
                             </label>
                             <input type="email" class="form-control" id="emailUsuario"
                                    th:field="*{emailUsuario}" placeholder="usuario@email.com" required>
+                            <div class="form-text">Este e-mail sera usado para recuperar sua senha.</div>
                         </div>
 
                         <div class="mb-4">

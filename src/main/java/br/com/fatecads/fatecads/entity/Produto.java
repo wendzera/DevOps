@@ -35,6 +35,18 @@ public class Produto {
     @Column(nullable = false, length = 30)
     private String marcaProduto;
 
+    @Column(nullable = false, columnDefinition = "integer default 0")
+    private Integer quantidadeProduto = 0;
+
+    @Column(name = "imagem_produto", columnDefinition = "bytea")
+    private byte[] imagemProduto;
+
+    @Column(length = 100)
+    private String tipoImagemProduto;
+
+    @Column(length = 255)
+    private String nomeImagemProduto;
+
     @OneToMany(mappedBy = "produto")
     private List<ItemDoPedido> itens;
 }

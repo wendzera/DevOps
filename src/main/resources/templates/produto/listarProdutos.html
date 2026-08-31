@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Produtos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1050px; margin: 40px auto; padding: 0 20px; color: #222; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f3f3f3; }
+        .foto { width: 80px; height: 60px; object-fit: contain; }
+        .acoes { white-space: nowrap; }
+        .acoes a { margin-right: 10px; }
+    </style>
 </head>
 <body>
     <h1 style="text-align: center;">Lista de Produtos</h1>
@@ -13,21 +22,32 @@
 
     <table>
         <tr>
+            <th>Foto</th>
             <th>Descrição</th>
             <th>Valor</th>
             <th>Unidade</th>
             <th>Marca</th>
+            <th>Quantidade</th>
             <th colspan="2">Ações</th>
         </tr>
-        <tr th:each="produto : ${produto}">
+        <tr th:each="produto : ${produtos}">
+            <td>
+                <img class="foto" th:if="${produto.nomeImagemProduto != null}"
+                     th:src="@{/produtos/imagem/{id}(id=${produto.idProduto})}" alt="Foto do produto">
+                <span th:unless="${produto.nomeImagemProduto != null}">Sem foto</span>
+            </td>
             <td th:text="${produto.descricaoProduto}"></td>
-            <td th:text="${produto.valorProduto}"></td>
+            <td th:text="${#numbers.formatDecimal(produto.valorProduto, 1, 2)}"></td>
             <td th:text="${produto.unidadeProduto}"></td>
             <td th:text="${produto.marcaProduto}"></td>
-            <td>
+            <td th:text="${produto.quantidadeProduto}"></td>
+            <td class="acoes">
                 <a th:href="@{/produtos/editar/{id}(id=${produto.idProduto})}">Editar</a>
                 <a th:href="@{/produtos/excluir/{id}(id=${produto.idProduto})}">Excluir</a>
             </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(produtos)}">
+            <td colspan="7">Nenhum produto cadastrado.</td>
         </tr>
     </table>
 </body>

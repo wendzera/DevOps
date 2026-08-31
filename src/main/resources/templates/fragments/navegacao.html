@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="botaoVoltar" class="navegacao-voltar">
+        <style>
+            .navegacao-voltar {
+                position: fixed;
+                top: 16px;
+                left: 16px;
+                z-index: 1000;
+            }
+
+            .navegacao-voltar .botao-voltar {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                min-height: 42px;
+                padding: 9px 14px;
+                border: 1px solid rgba(0, 0, 0, 0.18);
+                border-radius: 8px;
+                background: #ffffff;
+                color: #1f2937;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+                font: 600 15px Arial, Helvetica, sans-serif;
+                cursor: pointer;
+                transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+
+            .navegacao-voltar .botao-voltar:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+            }
+
+            .navegacao-voltar .botao-voltar:focus-visible {
+                outline: 3px solid #93c5fd;
+                outline-offset: 2px;
+            }
+
+            .navegacao-voltar .seta-voltar {
+                font-size: 21px;
+                line-height: 1;
+            }
+
+            @media (max-width: 600px) {
+                .navegacao-voltar {
+                    top: 10px;
+                    left: 10px;
+                }
+
+                .navegacao-voltar .botao-voltar {
+                    min-height: 38px;
+                    padding: 7px 11px;
+                    font-size: 14px;
+                }
+            }
+        </style>
+
+        <button type="button" class="botao-voltar"
+                aria-label="Voltar para a tela anterior"
+                onclick="if (document.referrer &amp;&amp; document.referrer.startsWith(window.location.origin + '/')) { window.history.back(); } else { window.location.href='/fatecads'; }">
+            <span class="seta-voltar" aria-hidden="true">&#8592;</span>
+            <span>Voltar</span>
+        </button>
+    </div>
+</body>
+</html>
